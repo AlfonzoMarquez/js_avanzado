@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pelota rebotando</title>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="400" style="background:#111; display:block; margin:20px auto;"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let x = canvas.width / 2;
+    let y = canvas.height / 2;
+    let dx = 2;
+    let dy = 2;
+    let radius = 15;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#0095DD";
+      ctx.fill();
+      ctx.closePath();
+
+      if (x + dx > canvas.width - radius || x + dx < radius) {
+        dx = -dx;
+      }
+      if (y + dy > canvas.height - radius || y + dy < radius) {
+        dy = -dy;
+      }
+
+      x += dx;
+      y += dy;
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>

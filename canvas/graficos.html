@@ -1,0 +1,23 @@
+<canvas id="miCanvas" width="500" height="400"></canvas>
+<script>
+  const canvas = document.getElementById('miCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  let alturaActual = 0;
+  const alturaObjetivo = 300;
+
+  function animarGrafico() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Dibujar barra estadística animada
+    ctx.fillStyle = '#4f46e5';
+    ctx.fillRect(50, canvas.height - alturaActual - 30, 60, alturaActual);
+    
+    if (alturaActual < alturaObjetivo) {
+      alturaActual += 4;
+      requestAnimationFrame(animarGrafico);
+    }
+  }
+
+  animarGrafico();
+</script>
